@@ -5,7 +5,8 @@ import os
 import yaml
 from fnmatch import fnmatch
 from insights.core.archives import extract
-from insights.parsr.query import from_dict, Result
+# from insights.parsr.query import from_dict, Result
+from insights.models import from_dict, List
 from insights.util import content_type
 
 try:
@@ -95,7 +96,8 @@ def analyze(paths, excludes=None):
             with extract(path) as ex:
                 results.extend(process(ex.tmp_dir, excludes))
 
-    return Result(children=results)
+    return List(results)
+#    return Result(children=results)
 
 
 def parse_exclude(exc):
@@ -115,7 +117,8 @@ def main():
     # import all the built-in predicates
     from insights.parsr.query import (lt, le, eq, gt, ge, isin, contains,  # noqa: F403
             startswith, endswith, ieq, icontains, istartswith, iendswith,  # noqa: F403
-            matches, make_child_query)  # noqa: F403
+            matches)  # noqa: F403
+    from insights.models import make_child_query  # noqa: F403
     q = make_child_query  # noqa: F405
 
     import IPython
