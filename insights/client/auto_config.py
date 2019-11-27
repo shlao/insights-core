@@ -162,8 +162,8 @@ def _try_satellite6_configuration(config):
                 rhsm_hostname = 'cert-api.access.redhat.com'
             rhsm_ca = None
         elif _is_staging_rhsm(rhsm_hostname):
-            logger.debug('Connected to staging RHSM, using QA')
-            rhsm_hostname = 'access.qa.redhat.com'
+            logger.debug('Connected to staging RHSM, using rhel-test')
+            rhsm_hostname = 'rhel-test.cloud.redhat.com'
         else:
             # Set the host path
             # 'rhsm_hostname' should really be named ~ 'rhsm_host_base_url'
