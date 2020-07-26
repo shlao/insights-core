@@ -9,6 +9,9 @@ Parsers provided by this module are:
 EtcSshConfig - file ``/etc/ssh/ssh_config``
 -------------------------------------------
 
+EtcSshConfigD - file ``/etc/ssh/ssh_config.d/*``
+------------------------------------------------
+
 ForemanSshConfig - file ``/usr/share/foreman/.ssh/ssh_config``
 --------------------------------------------------------------
 
@@ -120,6 +123,14 @@ class EtcSshConfig(SshClientConfig):
         'HostName'
         >>> etcsshconfig.host_lines['Host_proxytest'][0].value
         '192.168.122.2'
+    """
+    pass
+
+
+@parser(Specs.ssh_config_d)
+class EtcSshConfigD(SshClientConfig):
+    """
+    This Parser reads the files ``/etc/ssh/ssh_config.d/``
     """
     pass
 
